@@ -13,7 +13,7 @@ public class FirtstBootJudger : MonoBehaviour
 
     public GameObject reset_text;
 
-    bool resitered;
+    public bool registered;
 
     public GameObject resetPanel;
 
@@ -30,18 +30,17 @@ public class FirtstBootJudger : MonoBehaviour
         }
         if (PlayerPrefs.GetInt("BootCount") < 1)
         {
-            resitered = false;
+            registered = false;
         }
         else
         {
-            resitered = true;
+            registered = true;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("boot:" + PlayerPrefs.GetInt("BootCount") + "registered:"+resitered);
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.Q) && Input.GetKey(KeyCode.P))
         {
             DeletePrefs();
@@ -49,69 +48,6 @@ public class FirtstBootJudger : MonoBehaviour
             reset_text.SetActive(true);
         }
     }
-
-    public void ToHalloween()
-    {
-        if (resitered)
-        {
-            nextSceneName = "Game_Halloween";
-        }
-        else
-        {
-            nextSceneName = "UserRegister_Hal";
-        }
-        Invoke("ToNext", 1.2f);
-        canvas.GetComponent<FadeInOut>().isFadeOut = true;
-    }
-
-    public void ToXmas()
-    {
-        if (resitered)
-        {
-            nextSceneName = "Game_Xmas";
-        }
-        else
-        {
-            nextSceneName = "UserRegister_Xmas";
-        }
-        Invoke("ToNext", 1.2f);
-        canvas.GetComponent<FadeInOut>().isFadeOut = true;
-    }
-
-    public void ToValentine()
-    {
-        if (resitered)
-        {
-            nextSceneName = "Game_Valentine";
-        }
-        else
-        {
-            nextSceneName = "UserRegister_Valentine";
-        }
-        Invoke("ToNext", 1.2f);
-        canvas.GetComponent<FadeInOut>().isFadeOut = true;
-    }
-
-    public void NextScene()
-    {
-        if (resitered)
-        {
-            nextSceneName = "Game_Xmas";
-        }
-        else
-        {
-            nextSceneName = "UserRegister_Xmas";
-        }
-        Invoke("ToNext", 1.2f);
-        canvas.GetComponent<FadeInOut>().isFadeOut = true;
-    }
-
-
-    void ToNext()
-    {
-        SceneManager.LoadScene(nextSceneName);
-    }
-
     public void DeletePrefs()
     {
         PlayerPrefs.DeleteAll();

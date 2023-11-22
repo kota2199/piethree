@@ -8,15 +8,13 @@ using NCMB;
 public class UserRegister : MonoBehaviour
 {
 
-    [SerializeField] InputField nameField,teamField;
+    [SerializeField] InputField nameField;
 
-    public string userName, teamName;
+    public string userName;
 
     string myid;
 
-    public GameObject canvas;
-
-    public Text team, user;
+    public GameObject fadeCanvas;
 
     public GameObject caution;
 
@@ -31,7 +29,7 @@ public class UserRegister : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
     }
 
     // Update is called once per frame
@@ -45,14 +43,13 @@ public class UserRegister : MonoBehaviour
         userName = nameField.text;
         //teamName = teamField.text;
         Debug.Log(userName);
-        if (userName == "" && teamName == "")
+        if (userName == "")
         {
             caution.SetActive(true);
         }
         else
         {
             PlayerPrefs.SetString("UserName", userName);
-            PlayerPrefs.SetString("Team", teamName);
             PlayerPrefs.Save();
 
             //NCMBObject obj = new NCMBObject("HighScore");
@@ -76,7 +73,7 @@ public class UserRegister : MonoBehaviour
                         PlayerPrefs.Save();
                     }
                 });
-                nextSceneName = "Tutorial_hal";
+                nextSceneName = "Game_Halloween";
             }
             else if (ver.ToString() == "Xmas")
             {
@@ -98,7 +95,7 @@ public class UserRegister : MonoBehaviour
                         PlayerPrefs.Save();
                     }
                 });
-                nextSceneName = "Tutorial_Xmas";
+                nextSceneName = "Game_Xmas";
             }
             if (ver.ToString() == "Valentine")
             {
@@ -121,11 +118,11 @@ public class UserRegister : MonoBehaviour
                     }
                 });
 
-                nextSceneName = "Tutorial_Valentine";
+                nextSceneName = "Game_Valentine";
             }
 
             Invoke("ToNextScene", 1.2f);
-            canvas.GetComponent<FadeInOut>().isFadeOut = true;
+            fadeCanvas.GetComponent<FadeInOut>().isFadeOut = true;
         }
         
     }

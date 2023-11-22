@@ -2167,6 +2167,8 @@ MonoBehaviour:
   clickText: {fileID: 0}
   PieceGenerator: {fileID: 0}
   XmasItemBtn: {fileID: 0}
+  boostTx: {fileID: 0}
+  honmeiEffect: {fileID: 0}
 --- !u!82 &836967054
 AudioSource:
   m_ObjectHideFlags: 0

@@ -24,8 +24,6 @@ public class DataSave : MonoBehaviour
     }
     public Version ver;
 
-    //string id;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -55,7 +53,6 @@ public class DataSave : MonoBehaviour
             string userid = PlayerPrefs.GetString("id");
             if(ver.ToString() == "Halloween")
             {
-                //NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>("HighScore");
                 NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>("HighScore");
 
                 query.WhereEqualTo("objectId", userid);
@@ -87,7 +84,6 @@ public class DataSave : MonoBehaviour
             if (ver.ToString() == "Xmas")
             {
                 Debug.Log("XMAS");
-                //NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>("HighScore");
                 NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>("Xmas");
 
                 query.WhereEqualTo("objectId", userid);
