@@ -6,36 +6,36 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Title.unity
+    path: Assets/Scenes/01_Title.unity
     guid: ad446cc73458f452983120fc58df32a3
   - enabled: 1
-    path: Assets/Scenes/Tutorial_Xmas.unity
+    path: Assets/Scenes/03_Tutorial/Tutorial_Xmas.unity
     guid: 142aec783d7f74f22a3f8634ee986c15
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/UserRegister_Hal.unity
+    path: Assets/Scenes/02_UserRegister/UserRegister_Hal.unity
     guid: 19785f116cb714858bbf684e0806833f
   - enabled: 1
-    path: Assets/Scenes/UserRegister_Valentine.unity
+    path: Assets/Scenes/02_UserRegister/UserRegister_Valentine.unity
     guid: 3f83f0aa74c4a4622a47b685381fec83
   - enabled: 1
-    path: Assets/Scenes/Game_Halloween.unity
+    path: Assets/Scenes/04_InGame/Game_Halloween.unity
     guid: 3909a43139bb5447fb7e73457cb131c2
   - enabled: 1
-    path: Assets/Scenes/Game_Xmas.unity
+    path: Assets/Scenes/04_InGame/Game_Xmas.unity
     guid: cee987fe2e1744b8793c65e50a7411c1
   - enabled: 1
-    path: Assets/Scenes/Game_Valentine.unity
+    path: Assets/Scenes/04_InGame/Game_Valentine.unity
     guid: a7e76bff1f570414984728cff88c8481
   - enabled: 1
-    path: Assets/Scenes/Tutorial_hal.unity
+    path: Assets/Scenes/03_Tutorial/Tutorial_hal.unity
     guid: e5ebc79cae4574e2c82af6c0e60b1401
   - enabled: 1
-    path: Assets/Scenes/Tutorial_Valentine.unity
+    path: Assets/Scenes/03_Tutorial/Tutorial_Valentine.unity
     guid: 95dd7faef233a4e92b62bb0ae2bf8f2a
   - enabled: 1
-    path: Assets/Scenes/UserRegister_Xmas.unity
+    path: Assets/Scenes/02_UserRegister/UserRegister_Xmas.unity
     guid: a71e8d67ea8a74d24aaea2753ea587cf
   m_configObjects: {}
