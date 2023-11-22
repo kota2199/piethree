@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class EmptyCheck : MonoBehaviour
 {
 
-    public InputField team, user;
+    public InputField user;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,7 @@ public class EmptyCheck : MonoBehaviour
 
     public void Checking()
     {
-        if (team.text != null && user.text != null)
+        if (user.text != null)
         {
 
         }
