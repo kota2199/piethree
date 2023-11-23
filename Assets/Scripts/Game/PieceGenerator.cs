@@ -6,20 +6,11 @@ public class PieceGenerator : MonoBehaviour
 {
     public GameObject[] pieces;
 
-    GameObject basePoint;
-
-    GameObject clickedGameObject;
-
-    int row, column = 0;
-
     public GameObject[,] pieceArray = new GameObject[9, 9];
-
-    Vector3 piece_pos;
 
     private List<GameObject> deleteList = new List<GameObject>();
 
-
-    private List<GameObject> AlldeleteList = new List<GameObject>();
+    public bool movingFlag;
 
     private bool isStart;
 
@@ -28,8 +19,6 @@ public class PieceGenerator : MonoBehaviour
     public AudioClip clip, clip2;
 
     AudioSource audioSource;
-
-    public bool movingFlag;
 
     public GameObject GetParticle, LoseParticle;
 
@@ -53,49 +42,38 @@ public class PieceGenerator : MonoBehaviour
             for (int j = 0; j < 9; j++)
             {
                 int r = Random.Range(0, 5);
-                var piece = Instantiate(pieces[r]);
+                GameObject piece = Instantiate(pieces[r]);
                 piece.transform.position = new Vector2(i, j);
                 pieceArray[i, j] = piece;
             }
         }
-        CheckStartset();
+        CheckBeforeStart();
     }
+    void CheckBeforeStart()
+    {
 
-    // Update is called once per frame
-    void Update()
-    {
-        Debug.Log(isStart);
-    }
-    void CheckStartset()
-    {
         for (int i = 0; i < 9; i++)
         {
-            //i == y
             //右から２つ目以降は確認不要（width-2）
             for (int j = 0; j < 7; j++)
             {
-                //j == x
                 //同じタグのキャンディが３つ並んでいたら。Ｘ座標がｊなので注意。
                 if ((pieceArray[j, i].tag == pieceArray[j + 1, i].tag) && (pieceArray[j, i].tag == pieceArray[j + 2, i].tag))
                 {
-                    //CandyのisMatchingをtrueに
                     pieceArray[j, i].GetComponent<PieceController>().isMatching = true;
                     pieceArray[j + 1, i].GetComponent<PieceController>().isMatching = true;
                     pieceArray[j + 2, i].GetComponent<PieceController>().isMatching = true;
                 }
             }
-        }//
+        }
 
         //左の列からタテのつながりを確認
 
         for (int i = 0; i < 9; i++)
-        //i == x
         {
             //上から２つ目以降は確認不要。height-2
             for (int j = 0; j < 7; j++)
-            //j == y
             {
-                //Ｙ座標がｊ。
                 if ((pieceArray[i, j].tag == pieceArray[i, j + 1].tag) && (pieceArray[i, j].tag == pieceArray[i, j + 2].tag))
                 {
                     pieceArray[i, j].GetComponent<PieceController>().isMatching = true;
@@ -127,39 +105,28 @@ public class PieceGenerator : MonoBehaviour
             }
 
             //Listを空っぽに。
-
             deleteList.Clear();
 
             //空欄に新しいキャンディを入れる。
-
-            Invoke("SpawnNewCandy", 1f);
-            //SpawnNewCandy();
+            Invoke("SpawnNewCandy", 0.5f);
         }
+
         foreach (var item in pieceArray)
-
         {
-
-            if (item.GetComponent<PieceController>().isMatching)
-
+            if (GetComponent<PieceController>() && item.GetComponent<PieceController>().isMatching)
             {
-
                 deleteList.Add(item);
-
             }
-
         }
-        //List内にキャンディがある場合
 
+        //List内にキャンディがある場合
         if (deleteList.Count > 0)
 
         {
             //該当する配列をnullにして（内部管理）、キャンディを消去する（見た目）。
-
             foreach (var item in deleteList)
-
             {
                 pieceArray[(int)item.transform.position.x, (int)item.transform.position.y] = null;
-
                 Destroy(item);
                 GameObject.FindWithTag("GameMaster").GetComponent<GameMaster>().isHolding = false;
             }
@@ -173,7 +140,6 @@ public class PieceGenerator : MonoBehaviour
 
             //空欄に新しいキャンディを入れる。
             Invoke("SpawnNewCandy", 0.5f);
-            //SpawnNewCandy();
         }
         else
         {
@@ -190,11 +156,9 @@ public class PieceGenerator : MonoBehaviour
             //右から２つ目以降は確認不要
             for (int j = 0; j < 7; j++)
             {
-                //同じタグのキャンディが３つ並んでいたら。Ｘ座標がｊ。
                 if ((pieceArray[j, i].tag == pieceArray[j + 1, i].tag) && (pieceArray[j, i].tag == pieceArray[j + 2, i].tag))
                 {
                     pieceArray[i, j + 2].GetComponent<PieceController>().disanableMove();
-                    //CandyのisMatchingをtrueに
                     pieceArray[j, i].GetComponent<PieceController>().isMatching = true;
                     pieceArray[j + 1, i].GetComponent<PieceController>().isMatching = true;
                     pieceArray[j + 2, i].GetComponent<PieceController>().isMatching = true;
@@ -203,13 +167,10 @@ public class PieceGenerator : MonoBehaviour
         }
 
         //左の列からタテのつながりを確認
-
         for (int i = 0; i < 9; i++)
         {
-            //上から２つ目以降は確認不要。
             for (int j = 0; j < 7; j++)
             {
-                //Ｙ座標がｊ。
                 if ((pieceArray[i, j].tag == pieceArray[i, j + 1].tag) && (pieceArray[i, j].tag == pieceArray[i, j + 2].tag))
                 {
                     pieceArray[i, j + 2].GetComponent<PieceController>().disanableMove();
@@ -224,11 +185,9 @@ public class PieceGenerator : MonoBehaviour
 
         foreach (var item in pieceArray)
         {
-            //item.GetComponent<PieceController>().moveCountTx.SetActive(false);
             if (item.GetComponent<PieceController>().isMatching)
             {
                 ////３つ以上そろったとき、キャンディを半透明にする。
-                //item.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
                 deleteList.Add(item);
             }
         }
@@ -241,7 +200,6 @@ public class PieceGenerator : MonoBehaviour
             foreach (var item in pieceArray)
             {
                 item.GetComponent<PieceController>().disanableMove();
-                //effect
             }
         }
     }
@@ -283,7 +241,7 @@ public class PieceGenerator : MonoBehaviour
         Invoke("DeleteParticle", 3f);
         deleteList.Clear();
         //キャンディの落下を待って、空欄に新しいキャンディを入れる。
-        Invoke("SpawnNewCandy", 1f);
+        Invoke("SpawnNewCandy", 0.5f);
     }
 
     public bool ChekingHolding()
@@ -329,7 +287,7 @@ public class PieceGenerator : MonoBehaviour
         }
         if (isStart == false)
         {
-            CheckStartset();
+            CheckBeforeStart();
         }
         else //isStart==trueのとき。
         {
@@ -344,7 +302,8 @@ public class PieceGenerator : MonoBehaviour
 
             //続けざまに３つそろっているかどうか判定。
 
-            Invoke("CheckMatching", 0.2f);
+            //Invoke("CheckMatching", 0.2f);
+            CheckMatching();
 
         }
     }
@@ -364,7 +323,6 @@ public class PieceGenerator : MonoBehaviour
             foreach (var item in pieceArray)
             {
                 item.GetComponent<PieceController>().disanableMove();
-                //effect
             }
         }
     }
@@ -376,12 +334,10 @@ public class PieceGenerator : MonoBehaviour
             item.GetComponent<PieceController>().ReadyEnableMove();
             GameObject.FindWithTag("GameMaster").GetComponent<GameMaster>().isHolding = false;
             pieceArray[(int)item.transform.position.x, (int)item.transform.position.y] = null;
-                gameMaster.GetComponent<GameMaster>().GetScore();
-                ParticleForDelete = Instantiate(GetParticle, item.transform.position, Quaternion.identity);
-                particle = ParticleForDelete.GetComponent<ParticleSystem>();
-                audioSource.PlayOneShot(clip);
-
-
+            gameMaster.GetComponent<GameMaster>().GetScore();
+            ParticleForDelete = Instantiate(GetParticle, item.transform.position, Quaternion.identity);
+            particle = ParticleForDelete.GetComponent<ParticleSystem>();
+            audioSource.PlayOneShot(clip);
             Destroy(item);
         }
         //Listを空っぽに。
@@ -389,6 +345,6 @@ public class PieceGenerator : MonoBehaviour
         Invoke("DeleteParticle", 3f);
         deleteList.Clear();
         //キャンディの落下を待って、空欄に新しいキャンディを入れる。
-        Invoke("SpawnNewCandy", 1f);
+        Invoke("SpawnNewCandy", 0.5f);
     }
 }

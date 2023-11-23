@@ -24,12 +24,8 @@ public class DataSave : MonoBehaviour
     }
     public Version ver;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    string gameMode;
 
-    }
-    // Update is called once per frame
     void Update()
     {
         if (getRanking)
@@ -81,7 +77,7 @@ public class DataSave : MonoBehaviour
                 });
             }
 
-            if (ver.ToString() == "Xmas")
+            if (ver == Version.Xmas)
             {
                 Debug.Log("XMAS");
                 NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>("Xmas");
@@ -104,19 +100,15 @@ public class DataSave : MonoBehaviour
                         }
 
                     }
-                    else
-                    {
-
-                    }
 
                 });
             }
-            scoreTxt.text = "Score : " + s.ToString() + "個";
+            scoreTxt.text = "Score\n" + s.ToString() + "個";
         }
         else
-            {
-                scoreTxt.text = "Score : " + s.ToString() + "個";
-            }
+        {
+            scoreTxt.text = "Score\n" + s.ToString() + "個";
+        }
         getRanking = true;
     }
 
@@ -159,7 +151,7 @@ public class DataSave : MonoBehaviour
         }
         else
         {
-            scoreTxt.text = "Score : " + s.ToString() + "個";
+            scoreTxt.text = "Score\n" + s.ToString() + "個";
         }
         getRanking = true;
     }
@@ -169,98 +161,39 @@ public class DataSave : MonoBehaviour
     {
         int count = 0;
         string tempScore = "";
-        //★ データストアの「data」クラスから検索
-        if (ver.ToString() == "Halloween")
+        switch (ver)
         {
-            //NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>("HighScore");
-            NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>("HighScore");
-            //★Scoreフィールドの降順でデータを取得
-            query.OrderByDescending("Score");
-            query.Limit = 10;
-            query.FindAsync((List<NCMBObject> objList, NCMBException e) => {
-                if (e != null)
-                {
-                    UnityEngine.Debug.Log("ランキング取得失敗");
-                }
-                else
-                {
-                    //検索成功時の処理
-                    UnityEngine.Debug.Log("ランキング取得成功");
-                    // 値とインデックスのペアをループ処理
-                    foreach (NCMBObject obj in objList)
-                    {
-                        count++;
-                        //★ユーザーネームとスコアを画面表示
-                        //tempScore += count.ToString() + "位：" + obj["Team"] + "班/" + obj["Name"] + "：Score：" + obj["Score"] +"個" + "\r\n";
-                        tempScore += count.ToString() + "位：" + obj["Name"] + "：Score：" + obj["Score"] + "個" + "\r\n";
-                    }
-                    rank_txt.text = tempScore.ToString() + "個";
-                }
-            });
-        }
+            case Version.Valentine:
+                gameMode = "Valentine";
+                break;
+            case Version.Halloween:
+                gameMode = "Halloween";
+                break;
+            case Version.Xmas:
+                gameMode = "Xmas";
+                break;
 
-        if (ver.ToString() == "Xmas")
+        }
+        NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>(gameMode);
+        query.OrderByDescending("Score");
+        query.Limit = 10;
+        query.FindAsync((List<NCMBObject> objList, NCMBException e) =>
         {
-            //NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>("HighScore");
-            NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>("Xmas");
-            //★Scoreフィールドの降順でデータを取得
-            query.OrderByDescending("Score");
-            query.Limit = 10;
-            query.FindAsync((List<NCMBObject> objList, NCMBException e) => {
-                if (e != null)
+            if (e != null)
+            {
+                Debug.Log("ランキング取得失敗");
+            }
+            else
+            {
+                Debug.Log("ランキング取得成功");
+                foreach (NCMBObject obj in objList)
                 {
-                    UnityEngine.Debug.Log("ランキング取得失敗");
+                    count++;
+                    tempScore += count.ToString() + "位：" + obj["Name"] + "：Score：" + obj["Score"] + "個" + "\r\n";
                 }
-                else
-                {
-                    //検索成功時の処理
-                    UnityEngine.Debug.Log("ランキング取得成功");
-                    // 値とインデックスのペアをループ処理
-                    foreach (NCMBObject obj in objList)
-                    {
-                        count++;
-                        //★ユーザーネームとスコアを画面表示
-                        //tempScore += count.ToString() + "位：" + obj["Team"] + "班/" + obj["Name"] + "：Score：" + obj["Score"] +"個" + "\r\n";
-                        tempScore += count.ToString() + "位：" + obj["Name"] + "：Score：" + obj["Score"] + "個" + "\r\n";
-                    }
-                    rank_txt.text = tempScore.ToString() + "個";
-                }
-            });
-        }
-
-        if (ver.ToString() == "Valentine")
-        {
-            //NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>("HighScore");
-            NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>("Valentine");
-            //★Scoreフィールドの降順でデータを取得
-            query.OrderByDescending("Score_Valentine");
-            query.Limit = 10;
-            query.FindAsync((List<NCMBObject> objList, NCMBException e) => {
-                if (e != null)
-                {
-                    UnityEngine.Debug.Log("ランキング取得失敗");
-                }
-                else
-                {
-                    //検索成功時の処理
-                    UnityEngine.Debug.Log("ランキング取得成功");
-                    // 値とインデックスのペアをループ処理
-                    foreach (NCMBObject obj in objList)
-                    {
-                        count++;
-                        //★ユーザーネームとスコアを画面表示
-                        //tempScore += count.ToString() + "位：" + obj["Team"] + "班/" + obj["Name"] + "：Score：" + obj["Score"] +"個" + "\r\n";
-                        tempScore += count.ToString() + "位：" + obj["Name"] + "：Score：" + obj["Score_Valentine"] + "個" + "\r\n";
-                        //if (obj["objectId"].ToString() == PlayerPrefs.GetString("id"))
-                        //{
-                        //    selfRankTxt.text = count.ToString() + "位";
-                        //}
-
-                    }
-                    rank_txt.text = tempScore.ToString() + "個";
-                }
-            });
-        }
+                rank_txt.text = tempScore.ToString();
+            }
+        });
     }
 
     public void DisplayRanking()
