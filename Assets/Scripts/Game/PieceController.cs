@@ -27,10 +27,13 @@ public class PieceController : MonoBehaviour
 
     int moveCount = 3;
 
+    GameMaster gameMaster;
 
     // Start is called before the first frame update
     void Start()
     {
+        gameMaster = GameObject.FindWithTag("GameMaster").GetComponent<GameMaster>();
+
         pieceGenerator = FindObjectOfType<PieceGenerator>();
         row = (int)transform.position.x;
         column = (int)transform.position.y;
@@ -43,28 +46,24 @@ public class PieceController : MonoBehaviour
     {
         if (isMoving)
         {
-            if (GameObject.FindWithTag("GameMaster").GetComponent<GameMaster>().isPlaying && Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) && moveCount > 1)
+            if (gameMaster.isPlaying && Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) && moveCount > 1)
             {
                 audioSource.PlayOneShot(clip1);
-                    moveCount--;
-                    moveCountTx.GetComponent<Text>().text = moveCount.ToString();
-                    if (column <= 7)
+                moveCount--;
+                moveCountTx.GetComponent<Text>().text = moveCount.ToString();
+                if (column <= 7)
                 {
                     MoveCount();
                     //上のキャンディ情報を取得
-
                     neighborCandy = pieceGenerator.pieceArray[row,column + 1];
-
                     //隣のキャンディを１行下へ。
-
                     neighborCandy.GetComponent<PieceController>().column --;
-
                     //自身は１行上へ。
                     column++;
                     Invoke("DoCheckMatching", 0.3f);
                 }
             }
-            if (GameObject.FindWithTag("GameMaster").GetComponent<GameMaster>().isPlaying && Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow) && moveCount > 1)
+            if (gameMaster.isPlaying && Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow) && moveCount > 1)
             {
                 if (row > 0)
                     {
@@ -85,7 +84,7 @@ public class PieceController : MonoBehaviour
                     Invoke("DoCheckMatching", 0.3f);
                 }
             }
-            if (GameObject.FindWithTag("GameMaster").GetComponent<GameMaster>().isPlaying && Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) && moveCount > 1)
+            if (gameMaster.isPlaying && Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) && moveCount > 1)
             {
                 if (column > 0)
                     {
@@ -106,7 +105,7 @@ public class PieceController : MonoBehaviour
                     Invoke("DoCheckMatching", 0.3f);
                 }
             }
-            if (GameObject.FindWithTag("GameMaster").GetComponent<GameMaster>().isPlaying && Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow) && moveCount > 1)
+            if (gameMaster.isPlaying && Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow) && moveCount > 1)
             {
                 if (row <= 7)
                     {
@@ -133,28 +132,22 @@ public class PieceController : MonoBehaviour
             transform.position = Vector2.Lerp(transform.position, new Vector2(row, column), 0.3f);
             Vector2 dif = (Vector2)transform.position - new Vector2(row, column);
             if (Mathf.Abs(dif.magnitude) < 0.1f)
-
             {
-
                 transform.position = new Vector2(row, column);
 
                 //自身をCandyArray配列に格納する。
-
                 SetCandyToArray();
             }
         }
         else if (column > 0 && pieceGenerator.pieceArray[row, column - 1] == null)
-
         {
-
             FallCandy();
-
         }
     }
 
     private void OnMouseDown()
     {
-        if (!GameObject.FindWithTag("GameMaster").GetComponent<GameMaster>().isHolding)
+        if (!gameMaster.isHolding)
         {
             bool flag = GameObject.FindWithTag("Generator").GetComponent<PieceGenerator>().ChekingHolding();
             if (!flag)
@@ -164,10 +157,9 @@ public class PieceController : MonoBehaviour
                 moveCount = 3;
                 moveCountTx.SetActive(true);
                 moveCountTx.GetComponent<Text>().text = moveCount.ToString();
-                GameObject.FindWithTag("GameMaster").GetComponent<GameMaster>().isHolding = true;
+                gameMaster.isHolding = true;
             }
         }
-
     }
 
     void MoveCount()
@@ -179,7 +171,7 @@ public class PieceController : MonoBehaviour
             Shade.SetActive(false);
             moveCountTx.SetActive(false);
             moveCount = 0;
-            GameObject.FindWithTag("GameMaster").GetComponent<GameMaster>().isHolding = false;
+            gameMaster.isHolding = false;
             count = 0;
         }
     }
@@ -207,7 +199,6 @@ public class PieceController : MonoBehaviour
     public void ReadyEnableMove()
     {
         isMoving = true;
-        //Invoke("EnableMove",0.5f);
     }
 
     void EnableMove()
