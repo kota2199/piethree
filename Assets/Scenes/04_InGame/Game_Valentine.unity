@@ -2168,7 +2168,6 @@ MonoBehaviour:
   score: 0
   rank_txt: {fileID: 1389006066}
   scoreTxt: {fileID: 399166186}
-  selfRankTxt: {fileID: 1740702195}
   ranking_board: {fileID: 1581620650}
   ver: 2
 --- !u!114 &836967053
@@ -2983,10 +2982,10 @@ MonoBehaviour:
   - {fileID: 5611904465071012029, guid: b2e8f585c0ef54239a1ae8bbc17f18d2, type: 3}
   - {fileID: 185430624162432299, guid: 41bd6f0d5faf8439bba786128b122f30, type: 3}
   - {fileID: 2673367005652680183, guid: 366baac170cce44a5b33298e9fd6bb91, type: 3}
+  movingFlag: 0
   gameMaster: {fileID: 836967048}
   clip: {fileID: 8300000, guid: 21965be93bb3e4aa18d8e931e0df418a, type: 3}
   clip2: {fileID: 8300000, guid: 5170052ab83234014b7ab91106ccebe2, type: 3}
-  movingFlag: 0
   GetParticle: {fileID: 6256864803901689276, guid: ede5480dd97d845e2adad662cca8dcfc, type: 3}
   LoseParticle: {fileID: 6256864803901689276, guid: 331e4b4c2a2d84b4e816e86796afa023, type: 3}
   ver: 2
@@ -4053,7 +4052,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1740702194
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9124,7 +9123,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 836967053}
         m_TargetAssemblyTypeName: GameMaster, Assembly-CSharp
-        m_MethodName: UseXmasItem
+        m_MethodName: UseItem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

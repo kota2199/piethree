@@ -23,6 +23,8 @@ public class GameMaster : MonoBehaviour
 
     public bool isPlaying = false;
 
+    PieceGenerator generator;
+
     [SerializeField] AudioSource audioSource_main, audioSource_pinchi, audioSource_result;
 
     public AudioClip bgm1, bgm2, bgm3;
@@ -55,7 +57,9 @@ public class GameMaster : MonoBehaviour
     void Start()
     {
         isPlaying = false;
+
         audioSource_main = GetComponent<AudioSource>();
+
         audioSource_main.PlayOneShot(bgm1);
         maxTime = 60;
         curntTime = maxTime;
@@ -96,14 +100,7 @@ public class GameMaster : MonoBehaviour
                 audioSource_main.enabled = false;
                 audioSource_pinchi.enabled = false;
                 audioSource_result.PlayOneShot(bgm3);
-                if(ver.ToString() == "Valentine")
-                {
-                    saver.GetComponent<DataSave>().saveValentineScore(Score);
-                }
-                else
-                {
-                    saver.GetComponent<DataSave>().Save(Score);
-                }
+                saver.GetComponent<DataSave>().Save(Score);
                 saver.GetComponent<DataSave>().ShowRanking();
                 gameEnded = true;
             }
@@ -242,7 +239,7 @@ public class GameMaster : MonoBehaviour
         clickText.gameObject.SetActive(false);
     }
 
-    public void UseXmasItem()
+    public void UseItem()
     {
         if (ver.ToString() == "Valentine")
         {
@@ -258,7 +255,7 @@ public class GameMaster : MonoBehaviour
                 clickText.gameObject.SetActive(false);
             }
         }
-        else
+        else if (ver.ToString() == "Xmas")
         {
             if (itemCount >= 10 && !GameObject.FindWithTag("Generator").GetComponent<PieceGenerator>().ChekingHolding())
             {
