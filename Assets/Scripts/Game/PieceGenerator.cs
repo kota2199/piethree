@@ -8,13 +8,15 @@ public class PieceGenerator : MonoBehaviour
 
     public GameObject[,] pieceArray = new GameObject[9, 9];
 
+    int numOfLine = 9;
+
     private List<GameObject> deleteList = new List<GameObject>();
 
     public bool movingFlag;
 
     private bool isStart;
 
-    public GameObject gameMaster;
+    public GameMaster gameMaster;
 
     public AudioClip clip, clip2;
 
@@ -36,10 +38,13 @@ public class PieceGenerator : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+
+        gameMaster = GameObject.FindWithTag("GameMaster").GetComponent<GameMaster>();
+
         //初期のピースをランダム配置
-        for (int i = 0; i < 9; i++)
+        for (int i = 0; i < numOfLine; i++)
         {
-            for (int j = 0; j < 9; j++)
+            for (int j = 0; j < numOfLine; j++)
             {
                 int r = Random.Range(0, 5);
                 GameObject piece = Instantiate(pieces[r]);
@@ -49,13 +54,14 @@ public class PieceGenerator : MonoBehaviour
         }
         CheckBeforeStart();
     }
+
     void CheckBeforeStart()
     {
 
-        for (int i = 0; i < 9; i++)
+        for (int i = 0; i < numOfLine; i++)
         {
             //右から２つ目以降は確認不要（width-2）
-            for (int j = 0; j < 7; j++)
+            for (int j = 0; j < numOfLine - 2; j++)
             {
                 //同じタグのキャンディが３つ並んでいたら。Ｘ座標がｊなので注意。
                 if ((pieceArray[j, i].tag == pieceArray[j + 1, i].tag) && (pieceArray[j, i].tag == pieceArray[j + 2, i].tag))
@@ -69,10 +75,10 @@ public class PieceGenerator : MonoBehaviour
 
         //左の列からタテのつながりを確認
 
-        for (int i = 0; i < 9; i++)
+        for (int i = 0; i < numOfLine; i++)
         {
             //上から２つ目以降は確認不要。height-2
-            for (int j = 0; j < 7; j++)
+            for (int j = 0; j < numOfLine - 2; j++)
             {
                 if ((pieceArray[i, j].tag == pieceArray[i, j + 1].tag) && (pieceArray[i, j].tag == pieceArray[i, j + 2].tag))
                 {
@@ -101,38 +107,7 @@ public class PieceGenerator : MonoBehaviour
             {
                 pieceArray[(int)item.transform.position.x, (int)item.transform.position.y] = null;
                 Destroy(item);
-                GameObject.FindWithTag("GameMaster").GetComponent<GameMaster>().isHolding = false;
-            }
-
-            //Listを空っぽに。
-            deleteList.Clear();
-
-            //空欄に新しいキャンディを入れる。
-            Invoke("SpawnNewCandy", 0.5f);
-        }
-
-        foreach (var item in pieceArray)
-        {
-            if (GetComponent<PieceController>() && item.GetComponent<PieceController>().isMatching)
-            {
-                deleteList.Add(item);
-            }
-        }
-
-        //List内にキャンディがある場合
-        if (deleteList.Count > 0)
-
-        {
-            //該当する配列をnullにして（内部管理）、キャンディを消去する（見た目）。
-            foreach (var item in deleteList)
-            {
-                pieceArray[(int)item.transform.position.x, (int)item.transform.position.y] = null;
-                Destroy(item);
-                GameObject.FindWithTag("GameMaster").GetComponent<GameMaster>().isHolding = false;
-            }
-            foreach (var item in pieceArray)
-            {
-                item.GetComponent<PieceController>().disanableMove();
+                gameMaster.isHolding = false;
             }
 
             //Listを空っぽに。
@@ -206,42 +181,45 @@ public class PieceGenerator : MonoBehaviour
 
     void DeleteCandies()
     {
-        //List内のキャンディを消去。かつ、その配列をnullに。
-        foreach (var item in deleteList)
+        if (gameMaster.isPlaying)
         {
-            item.GetComponent<PieceController>().ReadyEnableMove();
-            GameObject.FindWithTag("GameMaster").GetComponent<GameMaster>().isHolding = false;
-            pieceArray[(int)item.transform.position.x, (int)item.transform.position.y] = null;
-            if (item.gameObject.tag == "Piece_5")
+            //List内のキャンディを消去。かつ、その配列をnullに。
+            foreach (var item in deleteList)
             {
-                gameMaster.GetComponent<GameMaster>().LoseScore();
-                ParticleForDelete = Instantiate(LoseParticle, item.transform.position, Quaternion.identity);
-                particle = ParticleForDelete.GetComponent<ParticleSystem>();
-                audioSource.PlayOneShot(clip2);
-                if (ver.ToString() == "Xmas" || ver.ToString() == "Valentine")
+                item.GetComponent<PieceController>().ReadyEnableMove();
+                gameMaster.isHolding = false;
+                pieceArray[(int)item.transform.position.x, (int)item.transform.position.y] = null;
+                if (item.gameObject.tag == "Piece_5")
                 {
-                    GameObject.FindWithTag("GameMaster").GetComponent<GameMaster>().itemCountMinus();
+                    gameMaster.LoseScore();
+                    ParticleForDelete = Instantiate(LoseParticle, item.transform.position, Quaternion.identity);
+                    particle = ParticleForDelete.GetComponent<ParticleSystem>();
+                    audioSource.PlayOneShot(clip2);
+                    if (ver.ToString() == "Xmas" || ver.ToString() == "Valentine")
+                    {
+                        gameMaster.itemCountMinus();
+                    }
                 }
-            }
-            else
-            {
-                gameMaster.GetComponent<GameMaster>().GetScore();
-                ParticleForDelete = Instantiate(GetParticle, item.transform.position, Quaternion.identity);
-                particle = ParticleForDelete.GetComponent<ParticleSystem>();
-                audioSource.PlayOneShot(clip);
-                if (ver.ToString() == "Xmas" || ver.ToString() == "Valentine")
+                else
                 {
-                    GameObject.FindWithTag("GameMaster").GetComponent<GameMaster>().ItemCountPlus();
+                    gameMaster.GetScore();
+                    ParticleForDelete = Instantiate(GetParticle, item.transform.position, Quaternion.identity);
+                    particle = ParticleForDelete.GetComponent<ParticleSystem>();
+                    audioSource.PlayOneShot(clip);
+                    if (ver.ToString() == "Xmas" || ver.ToString() == "Valentine")
+                    {
+                        gameMaster.ItemCountPlus();
+                    }
                 }
+                Destroy(item);
             }
-            Destroy(item);
+            //Listを空っぽに。
+            particle.Play();
+            Invoke("DeleteParticle", 3f);
+            deleteList.Clear();
+            //キャンディの落下を待って、空欄に新しいキャンディを入れる。
+            Invoke("SpawnNewCandy", 0.5f);
         }
-        //Listを空っぽに。
-        particle.Play();
-        Invoke("DeleteParticle", 3f);
-        deleteList.Clear();
-        //キャンディの落下を待って、空欄に新しいキャンディを入れる。
-        Invoke("SpawnNewCandy", 0.5f);
     }
 
     public bool ChekingHolding()
@@ -300,9 +278,6 @@ public class PieceGenerator : MonoBehaviour
                 item.GetComponent<PieceController>().myPreviousPos = new Vector2(column, row);
             }
 
-            //続けざまに３つそろっているかどうか判定。
-
-            //Invoke("CheckMatching", 0.2f);
             CheckMatching();
 
         }
@@ -332,9 +307,9 @@ public class PieceGenerator : MonoBehaviour
         foreach (var item in deleteList)
         {
             item.GetComponent<PieceController>().ReadyEnableMove();
-            GameObject.FindWithTag("GameMaster").GetComponent<GameMaster>().isHolding = false;
+            gameMaster.isHolding = false;
             pieceArray[(int)item.transform.position.x, (int)item.transform.position.y] = null;
-            gameMaster.GetComponent<GameMaster>().GetScore();
+            gameMaster.GetScore();
             ParticleForDelete = Instantiate(GetParticle, item.transform.position, Quaternion.identity);
             particle = ParticleForDelete.GetComponent<ParticleSystem>();
             audioSource.PlayOneShot(clip);

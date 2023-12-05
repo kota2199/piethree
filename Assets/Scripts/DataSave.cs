@@ -9,7 +9,7 @@ public class DataSave : MonoBehaviour
 
     public int score;
 
-    [SerializeField] Text rank_txt,scoreTxt, selfRankTxt;
+    [SerializeField] Text rank_txt,scoreTxt;
     [SerializeField] GameObject ranking_board;
 
     bool isDisplayRanking = false;
@@ -26,6 +26,8 @@ public class DataSave : MonoBehaviour
 
     string gameMode;
 
+    int scoreForCompare = 0;
+
     void Update()
     {
         if (getRanking)
@@ -41,18 +43,33 @@ public class DataSave : MonoBehaviour
 
     public void Save(int s)
     {
-        int scoreForCompare = PlayerPrefs.GetInt("Score");
+        switch (ver)
+        {
+            case Version.Valentine:
+                scoreForCompare = PlayerPrefs.GetInt("V_Score");
+                break;
+            case Version.Halloween:
+                scoreForCompare = PlayerPrefs.GetInt("H_Score");
+                break;
+            case Version.Xmas:
+                scoreForCompare = PlayerPrefs.GetInt("X_Score");
+                break;
+
+        }
         if (scoreForCompare < s)
         {
-            PlayerPrefs.SetInt("Score", s);
-            PlayerPrefs.Save();
             string userid = PlayerPrefs.GetString("id");
-            if(ver.ToString() == "Halloween")
+            if (ver == Version.Halloween)
             {
-                NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>("HighScore");
+                PlayerPrefs.SetInt("H_Score", s);
+                PlayerPrefs.Save();
+
+                Debug.Log("Halloween");
+                NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>("Halloween");
 
                 query.WhereEqualTo("objectId", userid);
-                query.FindAsync((List<NCMBObject> objList, NCMBException e) => {
+                query.FindAsync((List<NCMBObject> objList, NCMBException e) =>
+                {
 
                     if (e == null)
                     {
@@ -67,10 +84,6 @@ public class DataSave : MonoBehaviour
                             objList[0].SaveAsync();
                             ShowRanking();
                         }
-
-                    }
-                    else
-                    {
 
                     }
 
@@ -79,11 +92,14 @@ public class DataSave : MonoBehaviour
 
             if (ver == Version.Xmas)
             {
+                PlayerPrefs.SetInt("X_Score", s);
+                PlayerPrefs.Save();
                 Debug.Log("XMAS");
                 NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>("Xmas");
 
                 query.WhereEqualTo("objectId", userid);
-                query.FindAsync((List<NCMBObject> objList, NCMBException e) => {
+                query.FindAsync((List<NCMBObject> objList, NCMBException e) =>
+                {
 
                     if (e == null)
                     {
@@ -103,27 +119,12 @@ public class DataSave : MonoBehaviour
 
                 });
             }
-            scoreTxt.text = "Score\n" + s.ToString() + "個";
-        }
-        else
-        {
-            scoreTxt.text = "Score\n" + s.ToString() + "個";
-        }
-        getRanking = true;
-    }
 
-    public void saveValentineScore(int s)
-    {
-        int scoreForCompare_valentine = PlayerPrefs.GetInt("Score_Valentine");
-        if (scoreForCompare_valentine < s)
-        {
-            PlayerPrefs.SetInt("Score_Valentine", s);
-            PlayerPrefs.Save();
-            string userid = PlayerPrefs.GetString("id");
-            if (ver.ToString() == "Valentine")
+            if (ver == Version.Valentine)
             {
-                Debug.Log("VALETINE");
-                //NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>("HighScore");
+                Debug.Log("Valentine");
+                PlayerPrefs.SetInt("V_Score", s);
+                PlayerPrefs.Save();
                 NCMBQuery<NCMBObject> query = new NCMBQuery<NCMBObject>("Valentine");
 
                 query.WhereEqualTo("objectId", userid);
@@ -139,7 +140,7 @@ public class DataSave : MonoBehaviour
                         }
                         else
                         {
-                            objList[0]["Score_Valentine"] = s;
+                            objList[0]["Score"] = s;
                             objList[0].SaveAsync();
                             ShowRanking();
                         }
@@ -148,14 +149,11 @@ public class DataSave : MonoBehaviour
 
                 });
             }
+            getRanking = true;
         }
-        else
-        {
-            scoreTxt.text = "Score\n" + s.ToString() + "個";
-        }
-        getRanking = true;
+        ShowRanking();
+        scoreTxt.text = "Score\n" + s.ToString() + "個";
     }
-
 
     public void ShowRanking()
     {

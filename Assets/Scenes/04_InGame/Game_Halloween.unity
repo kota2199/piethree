@@ -2089,7 +2089,6 @@ MonoBehaviour:
   score: 0
   rank_txt: {fileID: 1389006066}
   scoreTxt: {fileID: 399166186}
-  selfRankTxt: {fileID: 0}
   ranking_board: {fileID: 1581620650}
   ver: 0
 --- !u!114 &836967053
@@ -2715,10 +2714,10 @@ MonoBehaviour:
   - {fileID: 5611904465071012029, guid: 4c1d73266c18e4dc3ac1601a1244ddb0, type: 3}
   - {fileID: 185430624162432299, guid: aa5d359d8b95742898a23f24e47674e3, type: 3}
   - {fileID: 2673367005652680183, guid: 601f590a60bc7463baaf5ca8559721fd, type: 3}
-  gameMaster: {fileID: 836967048}
+  movingFlag: 0
+  gameMaster: {fileID: 836967053}
   clip: {fileID: 8300000, guid: 21965be93bb3e4aa18d8e931e0df418a, type: 3}
   clip2: {fileID: 8300000, guid: 5170052ab83234014b7ab91106ccebe2, type: 3}
-  movingFlag: 0
   GetParticle: {fileID: 6256864803901689276, guid: 1ebfc94df43ae402db3fcb577516d137, type: 3}
   LoseParticle: {fileID: 6256864803901689276, guid: b35b2601431f14281992260bae9bda3d, type: 3}
   ver: 0
