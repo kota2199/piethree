@@ -101,7 +101,6 @@ public class GameMaster : MonoBehaviour
                 audioSource_pinchi.enabled = false;
                 audioSource_result.PlayOneShot(bgm3);
                 saver.GetComponent<DataSave>().Save(Score);
-                saver.GetComponent<DataSave>().ShowRanking();
                 gameEnded = true;
             }
         }
