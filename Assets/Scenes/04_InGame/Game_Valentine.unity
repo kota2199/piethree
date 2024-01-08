@@ -2982,8 +2982,9 @@ MonoBehaviour:
   - {fileID: 5611904465071012029, guid: b2e8f585c0ef54239a1ae8bbc17f18d2, type: 3}
   - {fileID: 185430624162432299, guid: 41bd6f0d5faf8439bba786128b122f30, type: 3}
   - {fileID: 2673367005652680183, guid: 366baac170cce44a5b33298e9fd6bb91, type: 3}
+  numOfLine: 9
   movingFlag: 0
-  gameMaster: {fileID: 836967048}
+  gameMaster: {fileID: 836967053}
   clip: {fileID: 8300000, guid: 21965be93bb3e4aa18d8e931e0df418a, type: 3}
   clip2: {fileID: 8300000, guid: 5170052ab83234014b7ab91106ccebe2, type: 3}
   GetParticle: {fileID: 6256864803901689276, guid: ede5480dd97d845e2adad662cca8dcfc, type: 3}

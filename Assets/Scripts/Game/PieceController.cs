@@ -7,9 +7,9 @@ public class PieceController : MonoBehaviour
 {
     private PieceGenerator pieceGenerator;
 
-    int count = 0;
+    private int count = 0;
 
-    int column, row;
+    private int column, row;
 
     public Vector2 myPreviousPos;
 
@@ -19,15 +19,15 @@ public class PieceController : MonoBehaviour
 
     public bool isMatching = false;
 
-    AudioSource audioSource;
+    private AudioSource audioSource;
 
     public AudioClip clip1, clip2;
 
     public GameObject Shade,moveCountTx;
 
-    int moveCount = 3;
+    private int moveCount = 3;
 
-    GameMaster gameMaster;
+    private GameMaster gameMaster;
 
     // Start is called before the first frame update
     void Start()
@@ -131,12 +131,11 @@ public class PieceController : MonoBehaviour
         {
             transform.position = Vector2.Lerp(transform.position, new Vector2(row, column), 0.3f);
             Vector2 dif = (Vector2)transform.position - new Vector2(row, column);
+
+            SetCandyToArray();
             if (Mathf.Abs(dif.magnitude) < 0.1f)
             {
                 transform.position = new Vector2(row, column);
-
-                //自身をCandyArray配列に格納する。
-                SetCandyToArray();
             }
         }
         else if (column > 0 && pieceGenerator.pieceArray[row, column - 1] == null)

@@ -12,11 +12,11 @@ public class DataSave : MonoBehaviour
     [SerializeField] Text rank_txt,scoreTxt;
     [SerializeField] GameObject ranking_board;
 
-    bool isDisplayRanking = false;
+    private bool isDisplayRanking = false;
 
-    float loadRanking = 59;
+    private float loadRanking = 59;
 
-    bool getRanking = false;
+    private bool getRanking = false;
 
     public enum Version
     {
@@ -185,13 +185,14 @@ public class DataSave : MonoBehaviour
             }
             else
             {
-                Debug.Log("ランキング取得成功");
                 foreach (NCMBObject obj in objList)
                 {
                     count++;
                     tempScore += count.ToString() + "位：" + obj["Name"] + "：Score：" + obj["Score"] + "個" + "\r\n";
+
+                    rank_txt.text = tempScore.ToString();
                 }
-                rank_txt.text = tempScore.ToString();
+                Debug.Log("ランキング取得成功");
             }
         });
     }

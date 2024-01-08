@@ -6,9 +6,11 @@ public class PieceGenerator : MonoBehaviour
 {
     public GameObject[] pieces;
 
+    [SerializeField]
+    private int numOfLine = 9;
+
     public GameObject[,] pieceArray = new GameObject[9, 9];
 
-    int numOfLine = 9;
 
     private List<GameObject> deleteList = new List<GameObject>();
 
@@ -20,13 +22,13 @@ public class PieceGenerator : MonoBehaviour
 
     public AudioClip clip, clip2;
 
-    AudioSource audioSource;
+    private AudioSource audioSource;
 
     public GameObject GetParticle, LoseParticle;
 
-    ParticleSystem particle;
+    private ParticleSystem particle;
 
-    GameObject ParticleForDelete;
+    private GameObject ParticleForDelete;
 
     public enum Version
     {
@@ -42,9 +44,9 @@ public class PieceGenerator : MonoBehaviour
         gameMaster = GameObject.FindWithTag("GameMaster").GetComponent<GameMaster>();
 
         //初期のピースをランダム配置
-        for (int i = 0; i < numOfLine; i++)
+        for (int i = 0; i < 9; i++)
         {
-            for (int j = 0; j < numOfLine; j++)
+            for (int j = 0; j < 9; j++)
             {
                 int r = Random.Range(0, 5);
                 GameObject piece = Instantiate(pieces[r]);
@@ -58,10 +60,10 @@ public class PieceGenerator : MonoBehaviour
     void CheckBeforeStart()
     {
 
-        for (int i = 0; i < numOfLine; i++)
+        for (int i = 0; i < 9; i++)
         {
             //右から２つ目以降は確認不要（width-2）
-            for (int j = 0; j < numOfLine - 2; j++)
+            for (int j = 0; j < 9 - 2; j++)
             {
                 //同じタグのキャンディが３つ並んでいたら。Ｘ座標がｊなので注意。
                 if ((pieceArray[j, i].tag == pieceArray[j + 1, i].tag) && (pieceArray[j, i].tag == pieceArray[j + 2, i].tag))
@@ -75,10 +77,10 @@ public class PieceGenerator : MonoBehaviour
 
         //左の列からタテのつながりを確認
 
-        for (int i = 0; i < numOfLine; i++)
+        for (int i = 0; i < 9; i++)
         {
             //上から２つ目以降は確認不要。height-2
-            for (int j = 0; j < numOfLine - 2; j++)
+            for (int j = 0; j < 9 - 2; j++)
             {
                 if ((pieceArray[i, j].tag == pieceArray[i, j + 1].tag) && (pieceArray[i, j].tag == pieceArray[i, j + 2].tag))
                 {
@@ -88,8 +90,8 @@ public class PieceGenerator : MonoBehaviour
                 }
             }
         }
-        //isMatching=trueのものをＬｉｓｔに入れる
 
+        //isMatching=trueのものをListに入れる
         foreach (var item in pieceArray)
         {
             item.GetComponent<PieceController>().moveCountTx.SetActive(false);
@@ -99,7 +101,7 @@ public class PieceGenerator : MonoBehaviour
             }
         }
 
-        //List内にキャンディがある場合
+        //List内にピースがある場合
         if (deleteList.Count > 0)
         {
             //該当する配列をnullにして（内部管理）、キャンディを消去する（見た目）。
@@ -156,8 +158,7 @@ public class PieceGenerator : MonoBehaviour
             }
         }
 
-        //isMatching=trueのものをＬｉｓｔに入れる
-
+        //isMatching=trueのものをListに入れる
         foreach (var item in pieceArray)
         {
             if (item.GetComponent<PieceController>().isMatching)
