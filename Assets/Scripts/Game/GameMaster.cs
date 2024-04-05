@@ -15,17 +15,18 @@ public class GameMaster : MonoBehaviour
 
     public GameObject scoreBoard, ctdownPanel, clock, pinchiPanel;
 
-    float curntTime, maxTime;
+    private float curntTime, maxTime;
 
-    bool gameEnded,gamePinchi = false;
+    private bool gameEnded,gamePinchi = false;
 
     public GameObject saver;
 
     public bool isPlaying = false;
 
-    PieceGenerator generator;
+    private PieceGenerator generator;
 
-    [SerializeField] AudioSource audioSource_main, audioSource_pinchi, audioSource_result;
+    [SerializeField]
+    private AudioSource audioSource_main, audioSource_pinchi, audioSource_result;
 
     public AudioClip bgm1, bgm2, bgm3;
 
@@ -47,9 +48,9 @@ public class GameMaster : MonoBehaviour
 
     public GameObject XmasItemBtn;
 
-    Vector3 ItemBtnSc;
+    private Vector3 ItemBtnSc;
 
-    int boost = 1;
+    private int boost = 1;
 
     public GameObject boostTx, honmeiEffect;
 
@@ -147,6 +148,12 @@ public class GameMaster : MonoBehaviour
         Invoke("ToNextScene", 1.2f);
         canvas.GetComponent<FadeInOut>().isFadeOut = true;
     }
+    public void ToTitle()
+    {
+        isPlaying = false;
+        Invoke("ToTitleScene", 1.2f);
+        canvas.GetComponent<FadeInOut>().isFadeOut = true;
+    }
 
     void ToNextScene()
     {
@@ -161,6 +168,11 @@ public class GameMaster : MonoBehaviour
         {
             SceneManager.LoadScene("Game_Valentine");
         }
+    }
+
+    void ToTitleScene()
+    {
+        SceneManager.LoadScene("01_Title");
     }
 
     IEnumerator CountDown()

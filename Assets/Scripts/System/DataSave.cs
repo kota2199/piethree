@@ -9,8 +9,11 @@ public class DataSave : MonoBehaviour
 
     public int score;
 
-    [SerializeField] Text rank_txt,scoreTxt;
-    [SerializeField] GameObject ranking_board;
+    [SerializeField]
+    private Text rank_txt,scoreTxt;
+
+    [SerializeField]
+    private GameObject ranking_board;
 
     private bool isDisplayRanking = false;
 
@@ -24,9 +27,9 @@ public class DataSave : MonoBehaviour
     }
     public Version ver;
 
-    string gameMode;
+    private string gameMode;
 
-    int scoreForCompare = 0;
+    private int scoreForCompare = 0;
 
     void Update()
     {
