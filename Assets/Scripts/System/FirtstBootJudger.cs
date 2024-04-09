@@ -14,6 +14,19 @@ public class FirtstBootJudger : MonoBehaviour
 
     public GameObject resetPanel;
 
+    private void Start()
+    {
+        int firstboot = PlayerPrefs.GetInt("Ver5.5");
+        
+        if(firstboot < 1)
+        {
+            resetPanel.SetActive(true);
+            PlayerPrefs.DeleteAll();
+            PlayerPrefs.SetInt("Ver5.5", 1);
+            PlayerPrefs.Save();
+        }
+    }
+
     void Update()
     {
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.Q) && Input.GetKey(KeyCode.P))

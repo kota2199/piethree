@@ -15,6 +15,8 @@ public class GameMaster : MonoBehaviour
 
     public GameObject scoreBoard, ctdownPanel, clock, pinchiPanel;
 
+    public Text selfScoreOnResult;
+
     private float curntTime, maxTime;
 
     private bool gameEnded,gamePinchi = false;
@@ -22,8 +24,6 @@ public class GameMaster : MonoBehaviour
     public GameObject saver;
 
     public bool isPlaying = false;
-
-    private PieceGenerator generator;
 
     [SerializeField]
     private AudioSource audioSource_main, audioSource_pinchi, audioSource_result;
@@ -54,6 +54,9 @@ public class GameMaster : MonoBehaviour
 
     public GameObject boostTx, honmeiEffect;
 
+    [SerializeField]
+    private GameObject rankingManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +65,7 @@ public class GameMaster : MonoBehaviour
         audioSource_main = GetComponent<AudioSource>();
 
         audioSource_main.PlayOneShot(bgm1);
+
         maxTime = 60;
         curntTime = maxTime;
         StartCoroutine("CountDown");
@@ -101,8 +105,13 @@ public class GameMaster : MonoBehaviour
                 audioSource_main.enabled = false;
                 audioSource_pinchi.enabled = false;
                 audioSource_result.PlayOneShot(bgm3);
-                saver.GetComponent<DataSave>().Save(Score);
+
+                selfScoreOnResult.text = Score.ToString() + "個";
+
                 gameEnded = true;
+
+
+                rankingManager.GetComponent<PlayfabRanking>().UpdatePlayerStatistics(Score);
             }
         }
         timeTxt.text = curntTime.ToString("f1") + "s";

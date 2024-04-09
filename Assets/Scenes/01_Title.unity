@@ -563,7 +563,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 109762438}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 032284d7b6f8840eb8771a6cb7712568, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f16ebb69b84c2f49b065cb283fb6a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   nameField: {fileID: 13947109}
@@ -925,7 +925,6 @@ GameObject:
   - component: {fileID: 195075763}
   - component: {fileID: 195075765}
   - component: {fileID: 195075764}
-  - component: {fileID: 195075766}
   m_Layer: 5
   m_Name: Text (Legacy)
   m_TagString: Untagged
@@ -985,7 +984,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.22
-  m_Text: "\u5927\u5E45\u306A\u4ED5\u69D8\u5909\u66F4\u306B\u4F34\u3044\u3001\u30E9\u30F3\u30AD\u30F3\u30B0\u3092\u30EA\u30BB\u30C3\u30C8\u81F4\u3057\u307E\u3057\u305F\u3002\n\u30D6\u30E9\u30A6\u30B6\u306B\u6B8B\u3063\u3066\u3044\u308B\u30AD\u30E3\u30C3\u30B7\u30E5\u3092\u524A\u9664\u3059\u308B\u305F\u3081\u3001\u3053\u306E\u30DA\u30FC\u30B8\u3092\u518D\u8AAD\u8FBC\u3057\u3066\u304F\u3060\u3055\u3044\u3002"
+  m_Text: "\u30E9\u30F3\u30AD\u30F3\u30B0\u30B7\u30B9\u30C6\u30E0\u306E\u4ED5\u69D8\u5909\u66F4\u306B\u4F34\u3044\u3001\u30E9\u30F3\u30AD\u30F3\u30B0\u3092\u30EA\u30BB\u30C3\u30C8\u3057\u307E\u3057\u305F\u3002\n\u3053\u306E\u30DA\u30FC\u30B8\u3092\u518D\u8AAD\u8FBC\u3057\u3066\u304F\u3060\u3055\u3044\u3002"
 --- !u!222 &195075765
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -994,19 +993,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 195075762}
   m_CullTransparentMesh: 1
---- !u!114 &195075766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 195075762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc33a39070010f94fb1c2dd721c1286d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showHtmlElement: 0
 --- !u!1 &212683338
 GameObject:
   m_ObjectHideFlags: 0
@@ -1552,7 +1538,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1895232442}
-        m_TargetAssemblyTypeName: UserRegister, Assembly-CSharp
+        m_TargetAssemblyTypeName: UserRegisterManager, Assembly-CSharp
         m_MethodName: Register
         m_Mode: 1
         m_Arguments:
@@ -1974,7 +1960,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 109762443}
-        m_TargetAssemblyTypeName: UserRegister, Assembly-CSharp
+        m_TargetAssemblyTypeName: UserRegisterManager, Assembly-CSharp
         m_MethodName: Register
         m_Mode: 1
         m_Arguments:
@@ -2587,7 +2573,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 18.6, y: -0.5}
+  m_AnchoredPosition: {x: 18.599998, y: -0.5}
   m_SizeDelta: {x: -20, y: -13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &774034651
@@ -3092,7 +3078,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &915762115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3740,7 +3726,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -6.3}
+  m_AnchoredPosition: {x: 0, y: -6.299999}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1178374710
@@ -4982,7 +4968,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1895232437}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 032284d7b6f8840eb8771a6cb7712568, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f16ebb69b84c2f49b065cb283fb6a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   nameField: {fileID: 1596688223}
@@ -5447,7 +5433,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2145866178}
-        m_TargetAssemblyTypeName: UserRegister, Assembly-CSharp
+        m_TargetAssemblyTypeName: UserRegisterManager, Assembly-CSharp
         m_MethodName: Register
         m_Mode: 1
         m_Arguments:
@@ -5884,7 +5870,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2145866173}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 032284d7b6f8840eb8771a6cb7712568, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f16ebb69b84c2f49b065cb283fb6a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   nameField: {fileID: 1609660795}
