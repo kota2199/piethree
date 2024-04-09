@@ -3476,7 +3476,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 1, g: 1, b: 1, a: 0.6156863}
-  m_EffectDistance: {x: 1, y: -1}
+  m_EffectDistance: {x: 0.5, y: -0.5}
   m_UseGraphicAlpha: 1
 --- !u!114 &1067367984
 MonoBehaviour:
@@ -3500,10 +3500,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 35cdc706c1ac84437af237837981a39f, type: 3}
-    m_FontSize: 26
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -3511,7 +3511,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u30E6\u30FC\u30B6\u30FC\u30CD\u30FC\u30E0\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044\u3002"
+  m_Text: "\u30E6\u30FC\u30B6\u30FC\u30CD\u30FC\u30E0\u30923\u6587\u5B57\u4EE5\u4E0A\u3067\n\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044\u3002"
 --- !u!222 &1067367985
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3837,7 +3837,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 1, g: 1, b: 1, a: 0.6156863}
-  m_EffectDistance: {x: 1, y: -1}
+  m_EffectDistance: {x: 0.5, y: -0.5}
   m_UseGraphicAlpha: 1
 --- !u!114 &1197622389
 MonoBehaviour:
@@ -3861,10 +3861,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 35cdc706c1ac84437af237837981a39f, type: 3}
-    m_FontSize: 26
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -3872,7 +3872,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u30E6\u30FC\u30B6\u30FC\u30CD\u30FC\u30E0\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044\u3002"
+  m_Text: "\u30E6\u30FC\u30B6\u30FC\u30CD\u30FC\u30E0\u30923\u6587\u5B57\u4EE5\u4E0A\u3067\n\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044\u3002"
 --- !u!222 &1197622390
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3899,7 +3899,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1269172943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4138,7 +4138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 1, g: 1, b: 1, a: 0.6156863}
-  m_EffectDistance: {x: 1, y: -1}
+  m_EffectDistance: {x: 0.5, y: -0.5}
   m_UseGraphicAlpha: 1
 --- !u!114 &1381474791
 MonoBehaviour:
@@ -4153,7 +4153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.3117892, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4162,7 +4162,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 35cdc706c1ac84437af237837981a39f, type: 3}
-    m_FontSize: 26
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -4173,7 +4173,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u30E6\u30FC\u30B6\u30FC\u30CD\u30FC\u30E0\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044\u3002"
+  m_Text: "\u30E6\u30FC\u30B6\u30FC\u30CD\u30FC\u30E0\u30923\u6587\u5B57\u4EE5\u4E0A\u3067\n\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044\u3002"
 --- !u!222 &1381474792
 CanvasRenderer:
   m_ObjectHideFlags: 0
