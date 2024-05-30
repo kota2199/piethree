@@ -6,8 +6,7 @@ using UnityEngine.UI;
 
 public class PlayfabRanking : MonoBehaviour
 {
-    [SerializeField]
-    private Text _rankingText = default;
+    public Text _rankingText = default;
 
     public enum GameMode
     {
@@ -76,7 +75,7 @@ public class PlayfabRanking : MonoBehaviour
         {
             StatisticName = leaderboardName, //ランキング名(統計情報名)
             StartPosition = 0,                 //何位以降のランキングを取得するか
-            MaxResultsCount = 3                  //ランキングデータを何件取得するか(最大100)
+            MaxResultsCount = 8                  //ランキングデータを何件取得するか(最大100)
         };
 
         //ランキング(リーダーボード)を取得

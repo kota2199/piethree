@@ -19,6 +19,21 @@ public class PlayFabLogin : MonoBehaviour
     //ログイン処理
     //=================================================================================
 
+    PlayFabLogin instance;
+
+    private void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
     public void Start()
     {
         Login();
@@ -52,7 +67,7 @@ public class PlayFabLogin : MonoBehaviour
 
 
 
-        GetComponent<PlayfabUserName>().UpdateUserName();
+        //GetComponent<PlayfabUserName>().UpdateUserName();
     }
 
     //ログイン失敗

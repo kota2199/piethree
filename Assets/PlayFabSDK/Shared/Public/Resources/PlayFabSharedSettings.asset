@@ -15,7 +15,7 @@ MonoBehaviour:
   TitleId: E8493
   DeveloperSecretKey: GYBF97D1J3S3O44DHTM198MQTAC437FAFTQHBOHF48F4RJZNUH
   ProductionEnvironmentUrl: 
-  RequestType: 0
+  RequestType: 2
   DisableDeviceInfo: 0
   DisableFocusTimeCollection: 0
   RequestTimeout: 2000

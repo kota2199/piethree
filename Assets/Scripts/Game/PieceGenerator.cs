@@ -228,14 +228,17 @@ public class PieceGenerator : MonoBehaviour
         movingFlag = false;
         foreach (var item in pieceArray)
         {
-            bool isholding = item.GetComponent<PieceController>().isMoving;
-            if (isholding)
+            if (item != null)
             {
-                movingFlag = true;
-            }
-            else
-            {
-                movingFlag = false;
+                bool isholding = item.GetComponent<PieceController>().isMoving;
+                if (isholding)
+                {
+                    movingFlag = true;
+                }
+                else
+                {
+                    movingFlag = false;
+                }
             }
         }
         return movingFlag;

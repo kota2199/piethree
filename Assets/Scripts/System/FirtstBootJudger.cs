@@ -16,14 +16,14 @@ public class FirtstBootJudger : MonoBehaviour
 
     private void Start()
     {
-        int firstboot = PlayerPrefs.GetInt("Ver5.5");
+        int firstboot = PlayerPrefs.GetInt("Ver5.6");
         
         if(firstboot < 1)
         {
-            resetPanel.SetActive(true);
             PlayerPrefs.DeleteAll();
-            PlayerPrefs.SetInt("Ver5.5", 1);
+            PlayerPrefs.SetInt("Ver5.6", 1);
             PlayerPrefs.Save();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 

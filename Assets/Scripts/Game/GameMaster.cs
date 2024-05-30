@@ -5,57 +5,71 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameMaster : MonoBehaviour
-{
-
-    public int Score;
-
-    public Text scoreTxt,timeTxt;
-
-    public GameObject scoreForEf, cDownTxt;
-
-    public GameObject scoreBoard, ctdownPanel, clock, pinchiPanel;
-
-    public Text selfScoreOnResult;
-
-    private float curntTime, maxTime;
-
-    private bool gameEnded,gamePinchi = false;
-
-    public GameObject saver;
-
-    public bool isPlaying = false;
-
-    [SerializeField]
-    private AudioSource audioSource_main, audioSource_pinchi, audioSource_result;
-
-    public AudioClip bgm1, bgm2, bgm3;
-
-    public bool isHolding = false;
-
-    public GameObject canvas;
-
+{    
     public enum Version
     {
         Halloween, Xmas, Valentine
     }
     public Version ver;
 
-    int itemCount = 0;
+    [SerializeField]
+    private int Score;
 
-    public Text itemText, clickText;
+    [SerializeField]
+    private Text scoreTxt,timeTxt;
 
-    public GameObject PieceGenerator;
+    [SerializeField]
+    private GameObject scoreForEf, cDownTxt;
 
-    public GameObject XmasItemBtn;
+    [SerializeField]
+    private GameObject scoreBoard, ctdownPanel, clock, pinchiPanel;
+
+    [SerializeField]
+    private Text selfScoreOnResult;
+
+    private float curntTime, maxTime;
+
+    private bool gameEnded,gamePinchi = false;
+
+    [SerializeField]
+    private GameObject saver;
+
+    public bool isPlaying = false;
+
+    [SerializeField]
+    private AudioSource audioSource_main, audioSource_pinchi, audioSource_result;
+
+    [SerializeField]
+    private AudioClip bgm1, bgm2, bgm3;
+
+    public bool isHolding = false;
+
+    [SerializeField]
+    private GameObject canvas;
+
+    private int itemCount = 0;
+
+    [SerializeField]
+    private Text itemText, clickText;
+
+    [SerializeField]
+    private GameObject PieceGenerator;
+
+    [SerializeField]
+    private GameObject XmasItemBtn;
 
     private Vector3 ItemBtnSc;
 
     private int boost = 1;
 
-    public GameObject boostTx, honmeiEffect;
+    [SerializeField]
+    private GameObject boostTx, honmeiEffect;
 
     [SerializeField]
     private GameObject rankingManager;
+
+    [SerializeField]
+    private Text rankBoard;
 
     // Start is called before the first frame update
     void Start()
@@ -68,10 +82,38 @@ public class GameMaster : MonoBehaviour
 
         maxTime = 60;
         curntTime = maxTime;
+
+        GameObject.Find("PlayfabRankingManager").GetComponent<PlayfabRanking>()._rankingText = rankBoard;
+
+        rankingManager = GameObject.Find("PlayfabRankingManager");
+
+        SetGameMode();
+
         StartCoroutine("CountDown");
+
         if (ver.ToString() == "Xmas" || ver.ToString() == "Valentine")
         {
             ItemBtnSc = XmasItemBtn.transform.localScale;
+        }
+    }
+
+    private void SetGameMode()
+    {
+        PlayfabRanking playfabRanking = GameObject.Find("PlayfabRankingManager").GetComponent<PlayfabRanking>();
+
+        switch (ver)
+        {
+            case Version.Halloween:
+                playfabRanking.gameMode = PlayfabRanking.GameMode.Haloween;
+                break;
+
+            case Version.Xmas:
+                playfabRanking.gameMode = PlayfabRanking.GameMode.Xmas;
+                break;
+
+            case Version.Valentine:
+                playfabRanking.gameMode = PlayfabRanking.GameMode.Valentine;
+                break;
         }
     }
 
