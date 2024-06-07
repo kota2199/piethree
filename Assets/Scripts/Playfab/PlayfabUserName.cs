@@ -4,35 +4,10 @@ using PlayFab;
 using PlayFab.ClientModels;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.UI;
 
 
 public class PlayfabUserName : MonoBehaviour
 {
-    //public void UpdateUserName(string name)
-    //{
-    //    //ユーザ名を指定して、UpdateUserTitleDisplayNameRequestのインスタンスを生成
-    //    var request = new UpdateUserTitleDisplayNameRequest
-    //    {
-    //        DisplayName = name
-    //    };
-    //    //ユーザ名の更新
-    //    Debug.Log($"ユーザ名の更新開始");
-    //    PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnUpdateUserNameSuccess, OnUpdateUserNameFailure);
-    //}
-    ////ユーザ名の更新成功
-    //private void OnUpdateUserNameSuccess(UpdateUserTitleDisplayNameResult result)
-    //{
-    //    //result.DisplayNameに更新した後のユーザ名が入ってる
-    //    Debug.Log($"ユーザ名の更新が成功しました : {result.DisplayName}");
-    //}
-
-    ////ユーザ名の更新失敗
-    //private void OnUpdateUserNameFailure(PlayFabError error)
-    //{
-    //    Debug.LogError($"ユーザ名の更新に失敗しました\n{error.GenerateErrorReport()}");
-    //}
-
     public async Task<bool> UpdateUserNameAsync(string name)
     {
         string userName = PlayerPrefs.GetString("UserName");

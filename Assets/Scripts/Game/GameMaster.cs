@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class GameMaster : MonoBehaviour
 {    
+    //神クラスすぎるので、夏のアップデートで切り分ける
     public enum Version
     {
         Halloween, Xmas, Valentine
@@ -97,6 +98,7 @@ public class GameMaster : MonoBehaviour
         }
     }
 
+    //前のシーンからDontDestroyOnLoadで保持しているPlayfabRankingManagerのゲームモードを実際のシーンのモードに切り替え
     private void SetGameMode()
     {
         PlayfabRanking playfabRanking = GameObject.Find("PlayfabRankingManager").GetComponent<PlayfabRanking>();
@@ -120,7 +122,8 @@ public class GameMaster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scoreTxt.text = Score.ToString() + "pts";
+        UpdateUI();
+
         if (isPlaying)
         {
             curntTime -= Time.deltaTime;
@@ -156,14 +159,21 @@ public class GameMaster : MonoBehaviour
                 rankingManager.GetComponent<PlayfabRanking>().UpdatePlayerStatistics(Score);
             }
         }
+    }
+
+    private void UpdateUI()
+    {
+        scoreTxt.text = Score.ToString() + "pts";
         timeTxt.text = curntTime.ToString("f1") + "s";
     }
 
+    //スコア加点
     public void GetScore()
     {
         Score += 1 * boost;
         StartCoroutine("GetScoreTextEf");
     }
+    //スコア減点
     public void LoseScore()
     {
         Score --;
@@ -226,6 +236,7 @@ public class GameMaster : MonoBehaviour
         SceneManager.LoadScene("01_Title");
     }
 
+    //ゲーム開始前のカウントダウン
     IEnumerator CountDown()
     {
         yield return new WaitForSeconds(2);
@@ -251,6 +262,7 @@ public class GameMaster : MonoBehaviour
         isHolding = false;
     }
 
+    //残り10秒で画面が点滅する
     private IEnumerator Pinchi()
     {
         for (int i = 0; i < 14; i++)
@@ -262,6 +274,7 @@ public class GameMaster : MonoBehaviour
         }
     }
 
+    //コンボアイテムの加算
     public void ItemCountPlus()
     {
         itemCount++;
@@ -330,6 +343,7 @@ public class GameMaster : MonoBehaviour
         }
     }
 
+    //アイテムボタンがクリックできることを示すエフェクト
     private IEnumerator ClickText()
     {
         while (true)

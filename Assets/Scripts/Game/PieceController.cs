@@ -71,17 +71,19 @@ public class PieceController : MonoBehaviour
                         moveCount--;
                         moveCountTx.GetComponent<Text>().text = moveCount.ToString();
                         MoveCount();
-                    //左隣りのキャンディ情報を取得
 
-                    neighborCandy = pieceGenerator.pieceArray[row - 1, column];
+                        //左隣りのキャンディ情報を取得
+                        neighborCandy = pieceGenerator.pieceArray[row - 1, column];
 
-                    //隣のキャンディを１列右へ。
+                        //隣のキャンディを１列右へ。
+                        neighborCandy.GetComponent<PieceController>().row ++;
 
-                    neighborCandy.GetComponent<PieceController>().row ++;
+                        //自身は１列左へ。
+                        row--;
 
-                    //自身は１列左へ。
-                    row--;
-                    Invoke("DoCheckMatching", 0.3f);
+
+                        //マッチングチェック
+                        Invoke("DoCheckMatching", 0.3f);
                 }
             }
             if (gameMaster.isPlaying && Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow) && moveCount > 1)
@@ -92,17 +94,18 @@ public class PieceController : MonoBehaviour
                         moveCount--;
                         moveCountTx.GetComponent<Text>().text = moveCount.ToString();
                         MoveCount();
-                    //下のキャンディ情報を取得
 
-                    neighborCandy = pieceGenerator.pieceArray[row, column - 1];
+                        //下のキャンディ情報を取得
+                        neighborCandy = pieceGenerator.pieceArray[row, column - 1];
 
-                    //隣のキャンディを１行上へ。
+                        //隣のキャンディを１行上へ。
+                        neighborCandy.GetComponent<PieceController>().column ++;
 
-                    neighborCandy.GetComponent<PieceController>().column ++;
+                        //自身は１行下へ。
+                        column--;
 
-                    //自身は１行下へ。
-                    column--;
-                    Invoke("DoCheckMatching", 0.3f);
+                        //マッチングチェック
+                        Invoke("DoCheckMatching", 0.3f);
                 }
             }
             if (gameMaster.isPlaying && Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow) && moveCount > 1)
@@ -113,16 +116,17 @@ public class PieceController : MonoBehaviour
                         moveCount--;
                         moveCountTx.GetComponent<Text>().text = moveCount.ToString();
                         MoveCount();
-                    //右隣りのキャンディ情報をneighborCandyに代入
 
-                    neighborCandy = pieceGenerator.pieceArray[row + 1, column];
+                        //右隣りのキャンディ情報をneighborCandyに代入
+                        neighborCandy = pieceGenerator.pieceArray[row + 1, column];
 
-                    //隣のキャンディを１列左へ。
+                        //隣のキャンディを１列左へ。
+                        neighborCandy.GetComponent<PieceController>().row --;
 
-                    neighborCandy.GetComponent<PieceController>().row --;
+                        row++;
 
-                    row++;
-                    Invoke("DoCheckMatching", 0.3f);
+                        //マッチングチェック
+                        Invoke("DoCheckMatching", 0.3f);
                 }
             }
         }
@@ -196,11 +200,6 @@ public class PieceController : MonoBehaviour
     }
 
     public void ReadyEnableMove()
-    {
-        isMoving = true;
-    }
-
-    void EnableMove()
     {
         isMoving = true;
     }

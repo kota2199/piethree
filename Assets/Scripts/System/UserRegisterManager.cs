@@ -29,16 +29,17 @@ public class UserRegisterManager : MonoBehaviour
 
     private string nextSceneName;
 
+    //登録ボタンを押したとき
     public void Register()
     {
         userName = nameField.text;
-        Debug.Log(userName);
         sendButtonText.text = "登録中...";
 
-        if (userName == "")
+        //ユーザーネームが未入力or二文字以下の場合(Playfabの仕様上2文字以下は不可)は警告、3文字以上入力されていたら登録
+        if (userName == "" || userName.Length < 2)
         {
             caution.gameObject.SetActive(true);
-            caution.text = "名前を入力してください。";
+            caution.text = "名前を3文字以上で入力してください。";
             sendButtonText.text = "OK";
         }
         else
@@ -48,6 +49,8 @@ public class UserRegisterManager : MonoBehaviour
 
     }
 
+    //入力された名前が既に使われていたり、無効な文字列ではないかをチェック
+    //PlayfabRankingManager.UpdateUserNameAsync
     private async void UpdateUserName(string name)
     {
         PlayfabUserName playfabUserName = GameObject.Find("PlayfabRankingManager").GetComponent<PlayfabUserName>();
@@ -67,6 +70,7 @@ public class UserRegisterManager : MonoBehaviour
         }
     }
 
+    //ユーザーネームと、登録済みかどうかをローカルに保存する
     private void RegisterSuccess()
     {
 
@@ -98,7 +102,5 @@ public class UserRegisterManager : MonoBehaviour
     void ToNextScene()
     {
         SceneManager.LoadScene(nextSceneName);
-        PlayerPrefs.SetInt("BootCount", 1);
-        PlayerPrefs.Save();
     }
 }

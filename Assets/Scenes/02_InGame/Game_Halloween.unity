@@ -1294,7 +1294,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 836967052}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: DataSave, Assembly-CSharp
         m_MethodName: ShowRanking
         m_Mode: 1
@@ -1306,7 +1306,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 836967052}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: DataSave, Assembly-CSharp
         m_MethodName: DisplayRanking
         m_Mode: 1
@@ -1680,7 +1680,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 836967052}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: DataSave, Assembly-CSharp
         m_MethodName: DisplayRanking
         m_Mode: 1
@@ -2376,7 +2376,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 836967051}
-  - component: {fileID: 836967052}
   - component: {fileID: 836967053}
   - component: {fileID: 836967054}
   - component: {fileID: 836967055}
@@ -2403,23 +2402,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &836967052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 836967048}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25c0fefa9c8c6422b8cae0e4d8ca3e2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: 0
-  rank_txt: {fileID: 1389006066}
-  scoreTxt: {fileID: 399166186}
-  ranking_board: {fileID: 1581620650}
-  ver: 0
 --- !u!114 &836967053
 MonoBehaviour:
   m_ObjectHideFlags: 0

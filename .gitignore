@@ -12,6 +12,9 @@ UnityGenerated/
 /Assets/AssetStoreTools*
 *.pidb.meta
 
+/PCBuild/
+
+/WebGL/
 
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
@@ -42,6 +45,8 @@ ExportedObj/
 Icon?
 ehthumbs.db
 Thumbs.db
+
+
 
 # ============ #
 # Build   #

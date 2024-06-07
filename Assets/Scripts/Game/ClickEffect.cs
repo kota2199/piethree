@@ -7,15 +7,10 @@ public class ClickEffect : MonoBehaviour
 
     public GameObject star;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
+        //マウスをクリックしたときにカーソルからエフェクトを出す
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 W_MousePoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);

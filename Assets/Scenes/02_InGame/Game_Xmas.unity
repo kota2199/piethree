@@ -3815,7 +3815,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1662421631}
-  - component: {fileID: 1662421628}
   - component: {fileID: 1662421627}
   - component: {fileID: 1662421626}
   - component: {fileID: 1662421625}
@@ -4156,23 +4155,6 @@ MonoBehaviour:
   honmeiEffect: {fileID: 0}
   rankingManager: {fileID: 517880205}
   rankBoard: {fileID: 1389006066}
---- !u!114 &1662421628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1662421623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25c0fefa9c8c6422b8cae0e4d8ca3e2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: 0
-  rank_txt: {fileID: 1389006066}
-  scoreTxt: {fileID: 399166186}
-  ranking_board: {fileID: 1581620650}
-  ver: 1
 --- !u!4 &1662421631
 Transform:
   m_ObjectHideFlags: 0

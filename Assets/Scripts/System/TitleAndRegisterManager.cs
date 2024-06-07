@@ -11,7 +11,7 @@ public class TitleAndRegisterManager : MonoBehaviour
     }
 
     [SerializeField]
-    GameObject fadeCanvas, titleCanvas, valRegiCanvas, halRegiCanvas, xmasRegiCanvas;
+    private GameObject fadeCanvas, titleCanvas, valRegiCanvas, halRegiCanvas, xmasRegiCanvas;
 
     public Mode mode;
 
