@@ -23,118 +23,118 @@ public class PlayfabRanking : MonoBehaviour
     }
 
     //=================================================================================
-    //ƒXƒRƒA
+    //ã‚¹ã‚³ã‚¢
     //=================================================================================
 
     /// <summary>
-    /// ƒXƒRƒA(“Œvî•ñ)‚ğXV‚·‚é
+    /// ã‚¹ã‚³ã‚¢(çµ±è¨ˆæƒ…å ±)ã‚’æ›´æ–°ã™ã‚‹
     /// </summary>
     public void UpdatePlayerStatistics(int score)
     {
-        //UpdatePlayerStatisticsRequest‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ¶¬
+        //UpdatePlayerStatisticsRequestã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ç”Ÿæˆ
         var request = new UpdatePlayerStatisticsRequest
         {
             Statistics = new List<StatisticUpdate>{
         new StatisticUpdate{
-          StatisticName = leaderboardName,   //ƒ‰ƒ“ƒLƒ“ƒO–¼(“Œvî•ñ–¼)
-          Value = score, //ƒXƒRƒA(int)
+          StatisticName = leaderboardName,   //ãƒ©ãƒ³ã‚­ãƒ³ã‚°å(çµ±è¨ˆæƒ…å ±å)
+          Value = score, //ã‚¹ã‚³ã‚¢(int)
         }
       }
         };
 
-        //ƒ†[ƒU–¼‚ÌXV
-        Debug.Log($"ƒXƒRƒA(“Œvî•ñ)‚ÌXVŠJn");
+        //ãƒ¦ãƒ¼ã‚¶åã®æ›´æ–°
+        Debug.Log($"ã‚¹ã‚³ã‚¢(çµ±è¨ˆæƒ…å ±)ã®æ›´æ–°é–‹å§‹");
         PlayFabClientAPI.UpdatePlayerStatistics(request, OnUpdatePlayerStatisticsSuccess, OnUpdatePlayerStatisticsFailure);
     }
 
-    //ƒXƒRƒA(“Œvî•ñ)‚ÌXV¬Œ÷
+    //ã‚¹ã‚³ã‚¢(çµ±è¨ˆæƒ…å ±)ã®æ›´æ–°æˆåŠŸ
     private void OnUpdatePlayerStatisticsSuccess(UpdatePlayerStatisticsResult result)
     {
-        Debug.Log($"ƒXƒRƒA(“Œvî•ñ)‚ÌXV‚ª¬Œ÷‚µ‚Ü‚µ‚½");
+        Debug.Log($"ã‚¹ã‚³ã‚¢(çµ±è¨ˆæƒ…å ±)ã®æ›´æ–°ãŒæˆåŠŸã—ã¾ã—ãŸ");
         GetLeaderboard();
     }
 
-    //ƒXƒRƒA(“Œvî•ñ)‚ÌXV¸”s
+    //ã‚¹ã‚³ã‚¢(çµ±è¨ˆæƒ…å ±)ã®æ›´æ–°å¤±æ•—
     private void OnUpdatePlayerStatisticsFailure(PlayFabError error)
     {
-        Debug.LogError($"ƒXƒRƒA(“Œvî•ñ)XV‚É¸”s‚µ‚Ü‚µ‚½\n{error.GenerateErrorReport()}");
+        Debug.LogError($"ã‚¹ã‚³ã‚¢(çµ±è¨ˆæƒ…å ±)æ›´æ–°ã«å¤±æ•—ã—ã¾ã—ãŸÂ¥n{error.GenerateErrorReport()}");
     }
 
 
     //=================================================================================
-    //ƒ‰ƒ“ƒLƒ“ƒOæ“¾
+    //ãƒ©ãƒ³ã‚­ãƒ³ã‚°å–å¾—
     //=================================================================================
 
     /// <summary>
-    /// ƒ‰ƒ“ƒLƒ“ƒO(ƒŠ[ƒ_[ƒ{[ƒh)‚ğæ“¾
+    /// ãƒ©ãƒ³ã‚­ãƒ³ã‚°(ãƒªãƒ¼ãƒ€ãƒ¼ãƒœãƒ¼ãƒ‰)ã‚’å–å¾—
     /// </summary>
     public void GetLeaderboard()
     {
-        //GetLeaderboardRequest‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ¶¬
+        //GetLeaderboardRequestã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ç”Ÿæˆ
         var request = new GetLeaderboardRequest
         {
-            StatisticName = leaderboardName, //ƒ‰ƒ“ƒLƒ“ƒO–¼(“Œvî•ñ–¼)
-            StartPosition = 0,                 //‰½ˆÊˆÈ~‚Ìƒ‰ƒ“ƒLƒ“ƒO‚ğæ“¾‚·‚é‚©
-            MaxResultsCount = 8                  //ƒ‰ƒ“ƒLƒ“ƒOƒf[ƒ^‚ğ‰½Œæ“¾‚·‚é‚©(Å‘å100)
+            StatisticName = leaderboardName, //ãƒ©ãƒ³ã‚­ãƒ³ã‚°å(çµ±è¨ˆæƒ…å ±å)
+            StartPosition = 0,                 //ä½•ä½ä»¥é™ã®ãƒ©ãƒ³ã‚­ãƒ³ã‚°ã‚’å–å¾—ã™ã‚‹ã‹
+            MaxResultsCount = 8                  //ãƒ©ãƒ³ã‚­ãƒ³ã‚°ãƒ‡ãƒ¼ã‚¿ã‚’ä½•ä»¶å–å¾—ã™ã‚‹ã‹(æœ€å¤§100)
         };
 
-        //ƒ‰ƒ“ƒLƒ“ƒO(ƒŠ[ƒ_[ƒ{[ƒh)‚ğæ“¾
-        Debug.Log($"ƒ‰ƒ“ƒLƒ“ƒO(ƒŠ[ƒ_[ƒ{[ƒh)‚Ìæ“¾ŠJn");
+        //ãƒ©ãƒ³ã‚­ãƒ³ã‚°(ãƒªãƒ¼ãƒ€ãƒ¼ãƒœãƒ¼ãƒ‰)ã‚’å–å¾—
+        Debug.Log($"ãƒ©ãƒ³ã‚­ãƒ³ã‚°(ãƒªãƒ¼ãƒ€ãƒ¼ãƒœãƒ¼ãƒ‰)ã®å–å¾—é–‹å§‹");
         PlayFabClientAPI.GetLeaderboard(request, OnGetLeaderboardSuccess, OnGetLeaderboardFailure);
     }
 
-    //ƒ‰ƒ“ƒLƒ“ƒO(ƒŠ[ƒ_[ƒ{[ƒh)‚Ìæ“¾¬Œ÷
+    //ãƒ©ãƒ³ã‚­ãƒ³ã‚°(ãƒªãƒ¼ãƒ€ãƒ¼ãƒœãƒ¼ãƒ‰)ã®å–å¾—æˆåŠŸ
     private void OnGetLeaderboardSuccess(GetLeaderboardResult result)
     {
-        Debug.Log($"ƒ‰ƒ“ƒLƒ“ƒO(ƒŠ[ƒ_[ƒ{[ƒh)‚Ìæ“¾‚É¬Œ÷‚µ‚Ü‚µ‚½");
+        Debug.Log($"ãƒ©ãƒ³ã‚­ãƒ³ã‚°(ãƒªãƒ¼ãƒ€ãƒ¼ãƒœãƒ¼ãƒ‰)ã®å–å¾—ã«æˆåŠŸã—ã¾ã—ãŸ");
 
-        //result.Leaderboard‚ÉŠe‡ˆÊ‚Ìî•ñ(PlayerLeaderboardEntry)‚ª“ü‚Á‚Ä‚¢‚é
+        //result.Leaderboardã«å„é †ä½ã®æƒ…å ±(PlayerLeaderboardEntry)ãŒå…¥ã£ã¦ã„ã‚‹
         _rankingText.text = "";
         foreach (var entry in result.Leaderboard)
         {
-            _rankingText.text += $"\n@{entry.Position + 1} ˆÊ,@{entry.DisplayName}, {entry.StatValue} ŒÂ";
+            _rankingText.text += $"Â¥nã€€{entry.Position + 1} ä½,ã€€{entry.DisplayName}, {entry.StatValue} å€‹";
         }
 
         Invoke("GetLeaderboard", 5f);
     }
 
-    //ƒ‰ƒ“ƒLƒ“ƒO(ƒŠ[ƒ_[ƒ{[ƒh)‚Ìæ“¾¸”s
+    //ãƒ©ãƒ³ã‚­ãƒ³ã‚°(ãƒªãƒ¼ãƒ€ãƒ¼ãƒœãƒ¼ãƒ‰)ã®å–å¾—å¤±æ•—
     private void OnGetLeaderboardFailure(PlayFabError error)
     {
-        Debug.LogError($"ƒ‰ƒ“ƒLƒ“ƒO(ƒŠ[ƒ_[ƒ{[ƒh)‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½\n{error.GenerateErrorReport()}");
+        Debug.LogError($"ãƒ©ãƒ³ã‚­ãƒ³ã‚°(ãƒªãƒ¼ãƒ€ãƒ¼ãƒœãƒ¼ãƒ‰)ã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸÂ¥n{error.GenerateErrorReport()}");
     }
 
     public void GetLeaderboardAroundPlayer()
     {
-        //GetLeaderboardAroundPlayerRequest‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğ¶¬
+        //GetLeaderboardAroundPlayerRequestã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ç”Ÿæˆ
         var request = new GetLeaderboardAroundPlayerRequest
         {
-            StatisticName = leaderboardName, //ƒ‰ƒ“ƒLƒ“ƒO–¼(“Œvî•ñ–¼)
-            MaxResultsCount = 3                  //©•ª‚ğŠÜ‚ß‘OŒã‰½Œæ“¾‚·‚é‚©
+            StatisticName = leaderboardName, //ãƒ©ãƒ³ã‚­ãƒ³ã‚°å(çµ±è¨ˆæƒ…å ±å)
+            MaxResultsCount = 3                  //è‡ªåˆ†ã‚’å«ã‚å‰å¾Œä½•ä»¶å–å¾—ã™ã‚‹ã‹
         };
 
-        //©•ª‚Ì‡ˆÊü•Ó‚Ìƒ‰ƒ“ƒLƒ“ƒO(ƒŠ[ƒ_[ƒ{[ƒh)‚ğæ“¾
-        Debug.Log($"©•ª‚Ì‡ˆÊü•Ó‚Ìƒ‰ƒ“ƒLƒ“ƒO(ƒŠ[ƒ_[ƒ{[ƒh)‚Ìæ“¾ŠJn");
+        //è‡ªåˆ†ã®é †ä½å‘¨è¾ºã®ãƒ©ãƒ³ã‚­ãƒ³ã‚°(ãƒªãƒ¼ãƒ€ãƒ¼ãƒœãƒ¼ãƒ‰)ã‚’å–å¾—
+        Debug.Log($"è‡ªåˆ†ã®é †ä½å‘¨è¾ºã®ãƒ©ãƒ³ã‚­ãƒ³ã‚°(ãƒªãƒ¼ãƒ€ãƒ¼ãƒœãƒ¼ãƒ‰)ã®å–å¾—é–‹å§‹");
         PlayFabClientAPI.GetLeaderboardAroundPlayer(request, OnGetLeaderboardAroundPlayerSuccess, OnGetLeaderboardAroundPlayerFailure);
     }
 
-    //©•ª‚Ì‡ˆÊü•Ó‚Ìƒ‰ƒ“ƒLƒ“ƒO(ƒŠ[ƒ_[ƒ{[ƒh)‚Ìæ“¾¬Œ÷
+    //è‡ªåˆ†ã®é †ä½å‘¨è¾ºã®ãƒ©ãƒ³ã‚­ãƒ³ã‚°(ãƒªãƒ¼ãƒ€ãƒ¼ãƒœãƒ¼ãƒ‰)ã®å–å¾—æˆåŠŸ
     private void OnGetLeaderboardAroundPlayerSuccess(GetLeaderboardAroundPlayerResult result)
     {
-        Debug.Log($"©•ª‚Ì‡ˆÊü•Ó‚Ìƒ‰ƒ“ƒLƒ“ƒO(ƒŠ[ƒ_[ƒ{[ƒh)‚Ìæ“¾‚É¬Œ÷‚µ‚Ü‚µ‚½");
+        Debug.Log($"è‡ªåˆ†ã®é †ä½å‘¨è¾ºã®ãƒ©ãƒ³ã‚­ãƒ³ã‚°(ãƒªãƒ¼ãƒ€ãƒ¼ãƒœãƒ¼ãƒ‰)ã®å–å¾—ã«æˆåŠŸã—ã¾ã—ãŸ");
 
-        //result.Leaderboard‚ÉŠe‡ˆÊ‚Ìî•ñ(PlayerLeaderboardEntry)‚ª“ü‚Á‚Ä‚¢‚é
+        //result.Leaderboardã«å„é †ä½ã®æƒ…å ±(PlayerLeaderboardEntry)ãŒå…¥ã£ã¦ã„ã‚‹
         _rankingText.text = "";
         foreach (var entry in result.Leaderboard)
         {
-            _rankingText.text += $"\n‡ˆÊ : {entry.Position}, ƒXƒRƒA : {entry.StatValue} ŒÂ , –¼‘O : {entry.DisplayName}";
+            _rankingText.text += $"Â¥né †ä½ : {entry.Position}, ã‚¹ã‚³ã‚¢ : {entry.StatValue} å€‹ , åå‰ : {entry.DisplayName}";
         }
     }
 
-    //©•ª‚Ì‡ˆÊü•Ó‚Ìƒ‰ƒ“ƒLƒ“ƒO(ƒŠ[ƒ_[ƒ{[ƒh)‚Ìæ“¾¸”s
+    //è‡ªåˆ†ã®é †ä½å‘¨è¾ºã®ãƒ©ãƒ³ã‚­ãƒ³ã‚°(ãƒªãƒ¼ãƒ€ãƒ¼ãƒœãƒ¼ãƒ‰)ã®å–å¾—å¤±æ•—
     private void OnGetLeaderboardAroundPlayerFailure(PlayFabError error)
     {
-        Debug.LogError($"©•ª‚Ì‡ˆÊü•Ó‚Ìƒ‰ƒ“ƒLƒ“ƒO(ƒŠ[ƒ_[ƒ{[ƒh)‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½\n{error.GenerateErrorReport()}");
+        Debug.LogError($"è‡ªåˆ†ã®é †ä½å‘¨è¾ºã®ãƒ©ãƒ³ã‚­ãƒ³ã‚°(ãƒªãƒ¼ãƒ€ãƒ¼ãƒœãƒ¼ãƒ‰)ã®å–å¾—ã«å¤±æ•—ã—ã¾ã—ãŸÂ¥n{error.GenerateErrorReport()}");
     }
 
     void ChangeLeaderBoard()
@@ -143,7 +143,7 @@ public class PlayfabRanking : MonoBehaviour
         {
             case GameMode.Haloween:
                 leaderboardName = "HighScore_Haloween";
-            break;
+                break;
 
             case GameMode.Xmas:
                 leaderboardName = "HighScore_Xmas";
