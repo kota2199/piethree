@@ -21,3 +21,14 @@
 左に移動：Wキー, 左キー
 
 コンボアイテムを使用(バレンタインモード、クリスマスモード限定)：画面右中央のボタンをマウスでクリック
+
+# 使用アセット、フリー素材
+[ghost's night](https://dova-s.jp/bgm/play3698.html)
+
+[Hangyaku Font](https://www.fontspace.com/hangyaku-font-f31195)
+
+[Procedural fire](https://assetstore.unity.com/packages/vfx/particles/fire-explosions/procedural-fire-141496)
+
+[Sherbb's Particle Collection](https://assetstore.unity.com/packages/vfx/particles/sherbb-s-particle-collection-170798)
+
+[ジャジーなアイキャッチ](https://dova-s.jp/bgm/play16981.html)
