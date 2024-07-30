@@ -1,10 +1,10 @@
 # Piethree
 こちらは”Piethree”のUnityプロジェクトです。
 
-ゲームを実行するときはAssets/Scenes/01_Titleシーンから実行をお願いします。
-
 # Unityroomにて配信中
 [こちら](https://unityroom.com/games/frion_piethree)からブラウザ上でプレイできます。
+
+Unityエディタ内でゲームを実行するときはAssets/Scenes/01_Titleシーンから実行をお願いします。
 
 # 操作方法
 
